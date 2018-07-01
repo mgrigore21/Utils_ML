@@ -7,10 +7,10 @@
 import os
 import pandas as pd
 
-DATA_PATH="C:/Users/MX341/Desktop/ML/E2E_test"
+DATA_PATH="Test"
 
 def load_data(data_path=DATA_PATH):
-    csv_path = os.path.join(data_path, "taxi_trips_2016_sample.csv")
+    csv_path = os.path.join(data_path, "data.csv")
     return pd.read_csv(csv_path)
 
 raw_data=load_data()
@@ -23,8 +23,8 @@ raw_data=load_data()
 raw_data.head()
 raw_data.info()
 
-# number of labels,change "cab_company"
-raw_data["cab_company"].value_counts
+# number of labels,change "name_column"
+raw_data["name_column"].value_counts
 
 raw_data.describe()
 
@@ -56,8 +56,7 @@ raw_data_train=train_set.copy()
 # create scatter matrix
 # change attributes for your data set
 from pandas.plotting import scatter_matrix
-attributes=["travel_time_seconds","travel_distance_miles",
-            "community_area_start","travel_total_price"]
+attributes=["name_column"]
 scatter_matrix(raw_data_train[attributes], figsize=(12,8))
 
 
@@ -66,8 +65,8 @@ scatter_matrix(raw_data_train[attributes], figsize=(12,8))
 
 # change x and y axis for other data _set
 
-raw_data_train.plot(kind="scatter", x="community_area_start",
-              y="travel_total_price",alpha=0.1)
+raw_data_train.plot(kind="scatter", x="column_name1",
+              y="column_name2",alpha=0.1)
 
 
 # In[8]:
@@ -85,7 +84,7 @@ corr_matrix['travel_total_price'].sort_values(ascending=False)
 
 #delete NaN raws
 raw_data_train=raw_data_train.dropna()
-#raw_data_train=raw_data_train.drop("census_tract_start",axis=1)
+#raw_data_train=raw_data_train.drop("column_name1",axis=1)
 raw_data_train.describe()
 #raw_data_train=raw_data_train.fillna(median, inplace=True)
 
